@@ -62,4 +62,4 @@ git submodule update --remote
 ```
 
 > [!IMPORTANT]
-> Remember to `git commit` the update!
+> Remember to `git add .husky && git commit` the update!
