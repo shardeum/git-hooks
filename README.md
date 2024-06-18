@@ -2,50 +2,64 @@
 
 ## Installing these hooks on a repository
 
-First, install and save [Husky](https://typicode.github.io/husky) as a dev dependency:
+1. Install and save [Husky](https://typicode.github.io/husky) as a dev dependency:
 
-```console
-npm install --save-dev husky
-```
+   ```console
+   npm install --save-dev husky
+   ```
 
-Then, add this repository as a submodule in the `.husky` directory:
+2. Add this repository as a submodule in the `.husky` directory:
 
-```console
-git submodule add git@github.com:shardeum/husky-hooks .husky
-```
+   ```console
+   git submodule add git@github.com:shardeum/husky-hooks .husky
+   ```
 
-Finally, initialize Husky:
+3. Initialize Husky:
 
-```console
-npx husky init
-```
+   ```console
+   npx husky init
+   ```
 
-Be sure to commit any changes Husky makes; these may be necessary for Husky to
-be installed automatically on other developers' machines.
+   You will notice that husky has added or modified the `prepare` script in
+   `package.json`. If it was modified, you can add the old `prepare` script back
+   as a `postprepare` script, e.g.
 
-## Cloning a repository with hooks
+   ```json
+   {
+     ...
+     "prepare": "husky",
+     "postprepare": "npm run compile",
+     ...
+   }
+   ```
 
-Repositories can be cloned with the `--recurse-submodules` flag:
+4. Modify the `prepare` script in `package.json` to automatically initialize
+   this submodule for other developers:
 
-```console
-git clone --recurse-submodules git@github.com:shardeum/shardeum
-```
+   ```json
+   {
+     ...
+     "prepare": "git submodule update --init && husky",
+     ...
+   }
+   ```
 
-or, if cloned without the flag, you can also run:
+   Husky will install hooks automatically when developers run `npm install`.
 
-```console
-git submodule update --init
-```
-
-to initialize the .husky folder correctly.
+   > [!IMPORTANT]
+   > Don't skip this step! Developers will have to manually clone or initialize
+   > hooks otherwise, and hooks won't be executed until they do.
 
 ## Updating hooks in repositories
 
 Hooks are installed via this submodule method in order to more easily and
 effectively propagate changes to other repositories. If updates are made to the
-hooks in this repository, they can be updated in other repositories by running
-this command:
+hooks in this repository, they can be pulled and updated in other repositories
+by updating the submodule:
 
 ```console
 git submodule update --remote
 ```
+
+> [!IMPORTANT]
+> Remember to `git commit` the update!
