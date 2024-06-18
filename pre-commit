@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+staged_files=$(git diff --name-only --cached)
+
+# check all newly added lines for bad language
+bad_found=false
+
+# go through each file added with changes
+echo "running bad language checks:"
+for file in $staged_files; do
+    # check each line starting with `+` in the diff
+    while read line; do
+        regex='\<heck'
+        if [[ $line =~ $regex ]]; then
+            echo "in $file> $line"
+            bad_found=true
+        fi
+    done <<< "$(git diff HEAD --no-ext-diff --unified=0 --exit-code -a --no-prefix $file | sed -n '/^\+/s///p')" # here string is necessary to keep the while loop in the current shell
+done
+
+if [ "$bad_found" = true ]; then
+    exit 1
+fi
+
+prettier --check $staged_files || exit 2
