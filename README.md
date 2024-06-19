@@ -26,10 +26,10 @@
 
    ```json
    {
-     ...
+     // ...
      "prepare": "husky",
-     "postprepare": "npm run compile",
-     ...
+     "postprepare": "npm run compile"
+     // ...
    }
    ```
 
@@ -38,17 +38,17 @@
 
    ```json
    {
-     ...
-     "prepare": "git submodule update --init && husky",
-     ...
+     // ...
+     "prepare": "git submodule update --init && husky"
+     // ...
    }
    ```
 
    Husky will install hooks automatically when developers run `npm install`.
 
-   > [!IMPORTANT]
-   > Don't skip this step! Developers will have to manually clone or initialize
-   > hooks otherwise, and hooks won't be executed until they do.
+> [!IMPORTANT]
+> Don't skip this last step! Developers will have to manually clone or initialize
+> hooks otherwise, and hooks won't be executed until they do.
 
 ## Updating hooks in repositories
 
