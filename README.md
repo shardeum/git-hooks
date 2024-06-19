@@ -4,19 +4,19 @@
 
 1. Install and save [Husky](https://typicode.github.io/husky) as a dev dependency:
 
-   ```console
+   ```sh
    npm install --save-dev husky
    ```
 
 2. Add this repository as a submodule in the `.husky` directory:
 
-   ```console
+   ```sh
    git submodule add git@github.com:shardeum/husky-hooks .husky
    ```
 
 3. Initialize Husky:
 
-   ```console
+   ```sh
    npx husky init
    ```
 
@@ -57,7 +57,7 @@ effectively propagate changes to other repositories. If updates are made to the
 hooks in this repository, they can be pulled and updated in other repositories
 by updating the submodule:
 
-```console
+```sh
 git submodule update --remote
 ```
 
