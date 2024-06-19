@@ -24,11 +24,11 @@
    `package.json`. If it was modified, you can add the old `prepare` script back
    as a `postprepare` script, e.g.
 
-   ```json
+   ```jsonc
    {
      // ...
      "prepare": "husky",
-     "postprepare": "npm run compile"
+     "postprepare": "npm run compile",
      // ...
    }
    ```
@@ -36,10 +36,10 @@
 4. Modify the `prepare` script in `package.json` to automatically initialize
    this submodule for other developers:
 
-   ```json
+   ```jsonc
    {
      // ...
-     "prepare": "git submodule update --init && husky"
+     "prepare": "git submodule update --init && husky",
      // ...
    }
    ```
