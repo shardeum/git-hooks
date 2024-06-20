@@ -11,7 +11,7 @@
 2. Add this repository as a submodule in the `.husky` directory:
 
    ```sh
-   git submodule add git@github.com:shardeum/husky-hooks .husky
+   git submodule add git@github.com:shardeum/git-hooks .husky
    ```
 
 3. Initialize Husky:
