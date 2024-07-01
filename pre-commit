@@ -22,4 +22,4 @@ if [ "$bad_found" = true ]; then
     exit 1
 fi
 
-prettier --check $staged_files || exit 2
+npx prettier --check $staged_files || exit 2
